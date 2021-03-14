@@ -1,0 +1,349 @@
+{
+	"r": "create_actors",
+	"actor_data":
+	[
+		{
+			"actor_id": "local_test_1",
+			"components":
+			[
+				{
+					"type": "volume_trigger",
+					"volume_data":
+					[
+						{
+							"collision_type": "box",
+							"center": [0.0, 0.0, 0.0],
+							"extents": [2.5, 1.0, 2.5],
+							"rotation": [0.0, 0.0, 0.0]							
+						}
+					],
+					"trigger_type": "local",
+					"anim_set": "set_vampire",
+					"anim_set_priority": 0
+				},				
+				{
+					"type": "net_actor_node",
+					"inputs":
+					[
+					   {
+						   "input_port": "raise",
+						   "actions":
+						   [
+							   {
+								   "a": "model_animation",
+								   "r": [0.0, 0.0, 0.0],
+								   "o": [0.0, 0.0, 0.0],
+								   "uid": "local",
+								   "p":
+								   {
+									   "name": "test_node_open",
+									   "wrap_mode": "once"
+								   }
+							   }
+						   ]
+					   },
+					   {
+						   "input_port": "lower",
+						   "actions":
+						   [
+							   {
+								   "a": "model_animation",
+								   "r": [0.0, 0.0, 0.0],
+								   "o": [0.0, 0.0, 0.0],
+								   "uid": "local",
+								   "p":
+								   {
+									   "name": "test_node_close",
+									   "wrap_mode": "once"
+								   }
+							   }
+						   ]
+					   }
+					],
+					"outputs":
+					[
+						{
+						   "output_port": "volume_trigger_enter_self",
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_1",
+								   "input_port": "raise"
+							   },
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_2",
+								   "input_port": "spin"
+							   }
+						   ]
+						},
+						{
+						   "output_port": "volume_trigger_exit_self",
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_1",
+								   "input_port": "lower"
+							   },
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_2",
+								   "input_port": "spin"
+							   }
+						   ]
+						}
+					]
+				},
+				{
+					"game_asset_url": "scene://GameAssets/local_test_1",
+					"type": "model",
+					"version": 1
+				}
+			],			
+			"actions":
+			[
+				{
+					"a": "position",
+					"o": [-4, 0.5, 2],
+					"uid": "local"
+				},
+				{
+					"a": "model_set_visible",
+					"uid": "local",
+					"p": 
+					{
+						"duration": 0.5,
+						"ease_type": "cubic_out",
+						"visible": true,
+						"method": "Scale"
+					}
+				}
+			]
+		},
+		{
+			"actor_id": "local_test_2",
+			"components":
+			[
+				{
+					"image_url": "cdn://content/gifting/minigames/cafe/cafe_minigame_sandwich.webp",
+					"type": "interaction",
+					"version": 1,
+					"create_collision": true
+				},
+				{
+					"type": "net_actor_node",
+					"inputs":
+					[
+					   {
+						   "input_port": "spin",
+						   "actions":
+						   [
+							   {
+								   "a": "model_animation",
+								   "r": [0.0, 0.0, 0.0],
+								   "o": [0.0, 0.0, 0.0],
+								   "uid": "local",
+								   "p":
+								   {
+									   "name": "test_node_spin",
+									   "wrap_mode": "once"
+								   }
+							   }
+						   ]
+					   }
+					],
+					"outputs":
+					[
+						{
+						   "output_port": "context_menu_interact",
+						   "cooldown": 2,
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_2",
+								   "input_port": "spin"
+							   }
+						   ]
+						}
+					]
+				},
+				{
+					"game_asset_url": "scene://GameAssets/local_test_2",
+					"type": "model",
+					"version": 1
+				}
+			],
+			"actions":
+			[
+				{
+					"a": "position",
+					"o": [-7, 0.5, 3.2],
+					"uid": "local"
+				},
+				{
+					"a": "model_set_visible",
+					"uid": "local",
+					"p": 
+					{
+						"duration": 0.5,
+						"ease_type": "cubic_out",
+						"visible": true,
+						"method": "Scale"
+					}
+				},
+				{
+					"a": "interaction_add",
+					"uid": "local",
+					"p":
+					{	
+						"trigger_data":
+						[
+							{
+								"name": "Spin gem",
+								"icon": "action_icon",
+								"id": "gem_spin",
+								"type": "local",
+								"instant": true
+							}
+						]
+					}					
+				}
+			]
+		},
+		{
+			"actor_id": "local_test_3",
+			"components":
+			[
+				{
+					"type": "volume_trigger",
+					"trigger_type": "local",
+					"volume_data":
+					[
+						{
+							"collision_type": "box",
+							"center": [0.0, 0.0, 0.0],
+							"extents": [2.5, 1.0, 2.5],
+							"rotation": [0.0, 0.0, 0.0]							
+						}
+					]					
+				},	
+				{
+					"type": "net_actor_node",
+					"inputs":
+					[
+					   {
+						   "input_port": "raise",
+						   "actions":
+						   [
+							   {
+								   "a": "model_animation",
+								   "r": [0.0, 0.0, 0.0],
+								   "o": [0.0, 0.0, 0.0],
+								   "uid": "local",
+								   "p":
+								   {
+									   "name": "test_node_open",
+									   "wrap_mode": "once"
+								   }
+							   }
+						   ]
+					   },
+					   {
+						   "input_port": "lower",
+						   "actions":
+						   [
+							   {
+								   "a": "model_animation",
+								   "r": [0.0, 0.0, 0.0],
+								   "o": [0.0, 0.0, 0.0],
+								   "uid": "local",
+								   "p":
+								   {
+									   "name": "test_node_close",
+									   "wrap_mode": "once"
+								   }
+							   }
+						   ]
+					   }
+					],
+					"outputs":
+					[
+						{
+						   "output_port": "volume_trigger_enter_first",
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_3",
+								   "input_port": "raise"
+							   }
+						   ]
+						},
+						{
+						   "output_port": "volume_trigger_exit_all",
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_3",
+								   "input_port": "lower"
+							   }
+						   ]
+						},
+						{
+						   "output_port": "volume_trigger_enter_any",
+						   "cooldown": 5,
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_2",
+								   "input_port": "spin"
+							   }
+						   ]
+						},
+						{
+						   "output_port": "volume_trigger_exit_any",
+						   "cooldown": 20,
+						   "output_port_data":
+						   [
+							   {
+								   "type": "local_wiring",
+								   "actor_id": "local_test_2",
+								   "input_port": "spin"
+							   }
+						   ]
+						}
+					]
+				},
+				{
+					"game_asset_url": "scene://GameAssets/local_test_1",
+					"type": "model",
+					"version": 1
+				}
+			],			
+			"actions":
+			[
+				{
+					"a": "position",
+					"o": [-10, 0.5, 1.5],
+					"uid": "local"
+				},
+				{
+					"a": "model_set_visible",
+					"uid": "local",
+					"p": 
+					{
+						"duration": 0.5,
+						"ease_type": "cubic_out",
+						"visible": true,
+						"method": "Scale"
+					}
+				}
+			]
+		}
+	]
+}
